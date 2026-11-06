@@ -5,33 +5,33 @@
 
 import pricing
 
-def main_menu () :
-    print ("=========================================")
-    print ("                 TRIPWISE                ")
-    print ("=========================================")
-
+def print_menu() :
+    print("=========================================")
+    print("                 TRIPWISE                ")
+    print("=========================================")
     print("1. Plan New Trip")
     print("2. View Pricing Information")
     print("3. Exit")
 
+def main() :
     while True:
-        choice = input("\nSelect an option : ")
+        print_menu()
+        choice = input("\nSelect an option : ").strip()
 
         if choice == "1":
             print("Starting new trip planning...")
-            # Here call the function to start planning a new trip
-            break
+            # call the trip.py later
 
         elif choice == "2":
             print("Displaying Pricing Information...")
-            break
+            pricing.display_pricing_information()
 
         elif choice == "3":
             print("Exiting the program. Goodbye!")
-            exit()
+            break
 
         else:
             print("Invalid choice. Please select a valid option.")
 
 
-main_menu()
+main()
