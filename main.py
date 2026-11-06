@@ -4,6 +4,7 @@
 # =========================================
 
 import pricing
+import trip
 
 def print_menu() :
     print("=========================================")
@@ -19,11 +20,12 @@ def main() :
         choice = input("\nSelect an option : ").strip()
 
         if choice == "1":
-            print("Starting new trip planning...")
-            # call the trip.py later
+            trip_info = trip.get_trip_information()
+            print("\n===Trip Information Summary===")
+            for key, value in trip_info.items():
+                print(f"{key:<12}: {value}")
 
         elif choice == "2":
-            print("Displaying Pricing Information...")
             pricing.display_pricing_information()
 
         elif choice == "3":
