@@ -29,3 +29,37 @@ def get_positive_float(prompt):
             print("Please enter an amount greater than 0.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
+
+
+#====================================
+# FUNCTIONS
+#====================================
+
+# Show a numbered menu and return the user choice
+def choose_from_list(title, options):
+    print(f"\n{title}")
+    for number, option in enumerate(options, start=1):
+        print(f"{number}. {option}")
+ 
+    while True:
+        choice = get_positive_int("Select an option : ")
+        if choice <= len(options):
+            return options[choice - 1]
+        print("Invalid choice. Please select a number from the list.")
+
+# Ask user for destination country and return the country name (exclude Malaysia)
+def get_destination_country(region) :
+    if region == "ASEAN":
+        print("ASEAN destinations: " + ", ".join(pricing.ASEAN_COUNTRIES))
+ 
+    while True:
+        country = input("Enter Destination Country : ").strip()
+ 
+        if country == "":
+            print("Country cannot be empty.")
+        elif country.lower() == "malaysia":
+            print("TripWise is for overseas trips only. Please choose a country outside Malaysia.")
+        else:
+            return country.title()
+
