@@ -63,3 +63,26 @@ def get_destination_country(region) :
         else:
             return country.title()
 
+# Collect all trip details and return them as a dictionary
+def get_trip_information():
+    print("\n======== PLAN YOUR TRIP ========")
+    print("Departure and return airport: KLIA (Kuala Lumpur International Airport)")
+ 
+    region = choose_from_list("Select Destination Region : ", list(pricing.REGIONAL_PRICING.keys()))
+    country = get_destination_country(region)
+ 
+    days = get_positive_int("Number of travel days : ", minimum=2)
+    travelers = get_positive_int("Number of travelers : ")
+    available_budget = get_positive_float("Total available budget (RM) : ")
+ 
+    season = choose_from_list("Select Travel Season : ", list(pricing.SEASON_MULTIPLIERS.keys()))
+ 
+    return {
+        "region": region,
+        "country": country,
+        "days": days,
+        "nights": days - 1,
+        "travelers": travelers,
+        "budget": available_budget,
+        "season": season
+    }
