@@ -6,6 +6,7 @@
 import pricing
 import trip
 import expenses
+import itinerary
 
 def print_menu() :
     print("=========================================")
@@ -25,7 +26,9 @@ def main() :
 
             costs = expenses.calculate_preliminary_budget(trip_info)
             expenses.display_preliminary_budget(trip_info, costs)
-            # Stage 3 will add the itinerary and attraction costs here
+
+            attractions, attraction_total = itinerary.place_attraction(trip_info)
+            # Stage 4 will add costs ["Total"] + attraction_total
 
         elif choice == "2":
             pricing.display_pricing_information()
