@@ -135,3 +135,42 @@ def assign_to_days(attractions, days):
     for item in sorted(attractions, key=area_and_slot_order) :
         place_attraction(attraction, item, days)
 
+#=====================================
+# DISPLAY FUNCTIONS
+#=====================================
+
+# Calculate total cose attractions for all travelers
+def calculate_attraction_total(attractions, travelers):
+    per_person = 0
+
+    for item in attractions:
+        if ["item"] is not None :
+            per_person += item["price"]
+        return per_person * travelers
+
+#
+def display_itinerary(attractions, days, travelers):
+    print("\n================ ITINERARY ================")
+
+    for day in range(1, days + 1):
+        print(f"\nDay {day}")
+        for slot in SLOTS :
+            line = f"   {SLOT_TIMES[slot]:>8}   {slot:<10}"
+            found = False
+            
+            for item in attractions:
+                if item["day"] == day and item["slot"] == slot:
+                    print(f"{line}{item['name']} ({item['area']}) RM {item['price']:,.2f} pp")
+                    found = True
+            if not found :
+                print(f"{line}-- free --")
+
+    unscheduled = [item for item in attractions if item["day"] is None]
+    if unscheduled :
+        print("\n!! UNSCHEDULED (no free slot, NOT included in the cost)!!")
+        for item in unscheduled :
+            print(f"  - {item['name']} ({item['area']}) RM {item['price']:,.2f} pp")
+
+    total = calculate_attraction_total(attractions, travelers)
+    print("\n" + "-" * 43)
+    print(f"Total attraction expenses ({travelers} traveler(s)) : RM{total:,.2f}")
