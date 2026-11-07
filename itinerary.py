@@ -122,3 +122,16 @@ def place_attraction(attractions, item, days):
     item["day"] = None
     return False
 
+# Sort key : group by area first then by time of day
+def area_and_slot_order(item):
+    return (item["slot"], SLOTS.index(item["slot"]))
+
+# Automatic schedule all attractions.
+# Same area attractions are placed next to each other and same day
+def assign_to_days(attractions, days):
+    for item in attractions :
+        item["day"] = None
+
+    for item in sorted(attractions, key=area_and_slot_order) :
+        place_attraction(attraction, item, days)
+
