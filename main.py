@@ -5,6 +5,7 @@
 
 import pricing
 import trip
+import expenses
 
 def print_menu() :
     print("=========================================")
@@ -21,9 +22,10 @@ def main() :
 
         if choice == "1":
             trip_info = trip.get_trip_information()
-            print("\n===Trip Information Summary===")
-            for key, value in trip_info.items():
-                print(f"{key:<12}: {value}")
+
+            costs = expenses.calculate_preliminary_budget(trip_info)
+            expenses.display_preliminary_budget(trip_info, costs)
+            # Stage 3 will add the itinerary and attraction costs here
 
         elif choice == "2":
             pricing.display_pricing_information()
