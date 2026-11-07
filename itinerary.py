@@ -99,7 +99,7 @@ def place_attraction(attractions, item, days):
     for day in range(1, days + 1):
         if day_has_area(attractions, day, area):
             for slot in SLOTS :
-                if slot_is_free(attractions, day, area):
+                if slot_is_free(attractions, day, slot):
                     item["day"] = day
                     item["slot"] = slot
                     return True
@@ -108,7 +108,6 @@ def place_attraction(attractions, item, days):
     for day in range(1, days + 1):
         if slot_is_free(attractions, day, item["slot"]):
             item["day"] = day
-            item["slot"] = slot
             return True
 
     # order 4 = any free slot
@@ -124,7 +123,7 @@ def place_attraction(attractions, item, days):
 
 # Sort key : group by area first then by time of day
 def area_and_slot_order(item):
-    return (item["slot"], SLOTS.index(item["slot"]))
+    return (item["area"], SLOTS.index(item["slot"]))
 
 # Automatic schedule all attractions.
 # Same area attractions are placed next to each other and same day
@@ -144,8 +143,9 @@ def calculate_attraction_total(attractions, travelers):
     per_person = 0
 
     for item in attractions:
-        if ["item"] is not None :
+        if item["day"] is not None :
             per_person += item["price"]
+
         return per_person * travelers
 
 # Print total day-by-day schedule, unscheduled attractions and total
@@ -263,7 +263,7 @@ def plan_itinerary(trip_info):
     attractions = []
 
     print("\n======== PLAN YOUR ITINERARY ========")
-    print(f"Your trip das {days} day(s) with 3 time slots per day.")
+    print(f"Your trip has {days} day(s) with 3 time slots per day.")
     print("Enter the attractions you want to visit (optional).")
 
     while ask_yes_no("\nAdd an attraction ? "):
