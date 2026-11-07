@@ -133,13 +133,13 @@ def assign_to_days(attractions, days):
         item["day"] = None
 
     for item in sorted(attractions, key=area_and_slot_order) :
-        place_attraction(attraction, item, days)
+        place_attraction(attractions, item, days)
 
 #=====================================
 # DISPLAY FUNCTIONS
 #=====================================
 
-# Calculate total cose attractions for all travelers
+# Calculate total cost attractions for all travelers
 def calculate_attraction_total(attractions, travelers):
     per_person = 0
 
@@ -230,7 +230,7 @@ def add_attraction(attractions, days):
         print("No free slot left. The attraction is flagged as unscheduled.")
 
 # Edit itinerary from the list
-def edit_attraction(attractions, days, travelers):
+def edit_itinerary(attractions, days, travelers):
     options = [
         "View itinerary",
         "Add attraction",
@@ -245,7 +245,7 @@ def edit_attraction(attractions, days, travelers):
         if choice == "View itinerary":
             display_itinerary(attractions, days, travelers)
         elif choice == "Add attraction":
-            add_attraction(attraction, days)
+            add_attraction(attractions, days)
         elif choice == "Remove attraction":
             remove_attraction(attractions)
         elif choice == "Move attraction":
@@ -253,3 +253,27 @@ def edit_attraction(attractions, days, travelers):
         else :
             break
 
+#===============================
+# PLAN ITINERARY FUNCTION
+#===============================
+
+def plan_itinerary(trip_info):
+    days = trip_info["days"]
+    travelers = trip_info["travelers"]
+    attractions = []
+
+    print("\n======== PLAN YOUR ITINERARY ========")
+    print(f"Your trip das {days} day(s) with 3 time slots per day.")
+    print("Enter the attractions you want to visit (optional).")
+
+    while ask_yes_no("\nAdd an attraction ? "):
+        attractions.append(get_attraction_details())
+
+    assign_to_days(attractions, days)
+    display_itinerary(attractions, days, travelers)
+
+    if ask_yes_no("\nEdit the itinerary ? "):
+        edit_itinerary(attractions, days, travelers)
+        display_itinerary(attractions, days, travelers)
+
+    return attractions, calculate_attraction_total(attractions, travelers)
