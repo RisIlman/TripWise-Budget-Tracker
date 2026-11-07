@@ -25,7 +25,7 @@ def get_non_negative_float(prompt):
 #=====================================
 
 # Show suggested daily budget, let the use adjust it, and return the final daily budget
-def customize_daily_budget() :
+def customize_daily_budget(label, suggested) :
     print(f"\nSuggested {label} budget : RM {suggested:,.2f} per person per day")
     options = [
         "Accepted suggested budget",
