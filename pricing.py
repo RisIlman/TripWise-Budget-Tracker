@@ -117,6 +117,26 @@ ASEAN_COUNTRIES = [
 ]
 
 #==============================================
+# SUGGESTED DAILY EXPENSES (per person / day)
+# NEED TO BE ADJUSTED BASED ON REGION RESEARCH FURTHER
+#==============================================
+EXPENSE_SUGGESTION = {
+    "ASEAN" :                 {"meals" : 60,   "miscellaneous" : 30},
+    "North Asia" :            {"meals" : 100,  "miscellaneous" : 50},
+    "Central Asia" :          {"meals" : 50,   "miscellaneous" : 30},
+    "Middle East" :           {"meals" : 80,   "miscellaneous" : 40},
+    "North Europe" :          {"meals" : 150,  "miscellaneous" : 70},
+    "West Europe" :           {"meals" : 130,  "miscellaneous" : 60},
+    "South Europe" :          {"meals" : 100,  "miscellaneous" : 50},
+    "East Europe" :           {"meals" : 70,   "miscellaneous" : 35},
+    "North Africa" :          {"meals" : 50,   "miscellaneous" : 30},
+    "North America" :         {"meals" : 140,  "miscellaneous" : 70},
+    "South America" :         {"meals" : 70,   "miscellaneous" : 40},
+    "Oceania" :               {"meals" : 130,  "miscellaneous" : 60}
+}
+
+
+#==============================================
 # FUNCTIONS
 #==============================================
 
