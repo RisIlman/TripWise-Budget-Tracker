@@ -27,7 +27,7 @@ def main() :
             costs = expenses.calculate_preliminary_budget(trip_info)
             expenses.display_preliminary_budget(trip_info, costs)
 
-            attractions, attraction_total = itinerary.place_attraction(trip_info)
+            attractions, attraction_total = itinerary.plan_itinerary(trip_info)
             # Stage 4 will add costs ["Total"] + attraction_total
 
         elif choice == "2":
