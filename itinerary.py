@@ -148,7 +148,7 @@ def calculate_attraction_total(attractions, travelers):
             per_person += item["price"]
         return per_person * travelers
 
-#
+# Print total day-by-day schedule, unscheduled attractions and total
 def display_itinerary(attractions, days, travelers):
     print("\n================ ITINERARY ================")
 
@@ -174,3 +174,82 @@ def display_itinerary(attractions, days, travelers):
     total = calculate_attraction_total(attractions, travelers)
     print("\n" + "-" * 43)
     print(f"Total attraction expenses ({travelers} traveler(s)) : RM{total:,.2f}")
+
+#===============================
+# EDITING FUNCTIONS
+#===============================
+
+# One line label for menus
+def describe(item):
+    if item["day"] is None :
+        place = "unscheduled"
+    else :
+        place = f"Day {item['day']} {item['slot']}"
+    return f"{item['name']} - {place}"
+
+# Remove attraction from list
+def remove_attraction(attractions):
+    if not attractions:
+        print("There are no attractions to remove.")
+        return
+    chosen = trip.choose_from_list("Remove which attraction ?", [describe(a) for a in attractions])
+    attractions.pop([describe(a) for a in attractions].index(chosen))
+    print("Attraction removed.")
+
+# Rearrange attraction from list
+def move_attraction(attractions, days):
+    if not attractions :
+        print("There are no attractions to move.")
+        return
+
+    labels = [describe(a) for a in attractions]
+    item = attractions[labels.index(trip.choose_from_list("Move which attraction ? ", labels))]
+
+    while True:
+        day = trip.get_positive_int(f"Move to which day (1-{days}) : ")
+        if day <= days:
+            break
+        print(f"Please enter a day between 1 and {days}")
+
+    slot = trip.choose_from_list("Move to which time slot ? ", SLOTS)
+
+    if slot_is_free(attractions, day, slot):
+        item["day"] = day
+        item["slot"] = slot
+        print("Attraction moved.")
+    else :
+        print("That slot is already taken. Nothing was changed.")
+
+# Add attraction to the list
+def add_attraction(attractions, days):
+    item = get_attraction_details()
+    attractions.append(item)
+    if place_attraction(attractions, item, days):
+        print(f"Scheduled on Day {item['day']} ({item['slot']}).")
+    else :
+        print("No free slot left. The attraction is flagged as unscheduled.")
+
+# Edit itinerary from the list
+def edit_attraction(attractions, days, travelers):
+    options = [
+        "View itinerary",
+        "Add attraction",
+        "Remove attraction",
+        "Move attraction",
+        "Finish"
+    ]
+
+    while True :
+        choice = trip.choose_from_list("Itinerary options : ", options)
+
+        if choice == "View itinerary":
+            display_itinerary(attractions, days, travelers)
+        elif choice == "Add attraction":
+            add_attraction(attraction, days)
+        elif choice == "Remove attraction":
+            remove_attraction(attractions)
+        elif choice == "Move attraction":
+            move_attraction(attractions, days)
+        else :
+            break
+
