@@ -77,3 +77,40 @@ def calculate_regional_costs(trip_info):
         "return_transport": return_transport
     }
 
+# Calculate the preliminary budget
+def calculate_preliminary_budget(trip_info) :
+    costs = calculate_regional_costs(trip_info)
+
+    suggestions = pricing.EXPENSE_SUGGESTION[trip_info["region"]]
+    meals_per_day = customize_daily_budget("meals", suggestions["meals"])
+    misc_per_day = customize_daily_budget("miscellaneous", suggestions["miscellaneous"])
+
+    days = trip_info["days"]
+    travelers = trip_info["travelers"]
+
+    # MC = M * D * N
+    # Meals Cost = Meals per day * Number of days * Number of travelers
+    costs["meals"] = meals_per_day * days * travelers
+    costs["miscellaneous"] = misc_per_day * days * travelers
+    costs["total"] = (costs["accommodation"] + costs["public_transport"]
+                      + costs["return_transport"] + costs["meals"] + costs["miscellaneous"])
+
+    return costs
+
+#
+def display_preliminary_budget(trip_info, costs) :
+    print("\n================ PRELIMINARY BUDGET ================")
+    print(f"Destination    : {trip_info['country']}, {trip_info['region']}")
+    print(f"Duration       : {trip_info['days']} days / {trip_info['nights']} nights")
+    print(f"Travelers      : {trip_info['travelers']}")
+    print(f"Season        : {trip_info['season']}")
+    print("=" * 55)
+    print(f"{'Accommodation':<25}RM {costs['accommodation']:>12,.2f}")
+    print(f"{'Public Transport':<25}RM {costs['public_transport']:>12,.2f}")
+    print(f"{'Return Transport':<25}RM {costs['return_transport']:>12,.2f}")
+    print(f"{'Meals':<25}RM {costs['meals']:>12,.2f}")
+    print(f"{'Miscellaneous':<25}RM {costs['miscellaneous']:>12,.2f}")
+    print("-" * 55)
+    print(f"{'Total (no attractions)':<25}RM {costs['total']:>12,.2f}")
+
+    #Add attractions cost later
