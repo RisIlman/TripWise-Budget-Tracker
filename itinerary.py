@@ -145,8 +145,7 @@ def calculate_attraction_total(attractions, travelers):
     for item in attractions:
         if item["day"] is not None :
             per_person += item["price"]
-
-        return per_person * travelers
+    return per_person * travelers
 
 # Print total day-by-day schedule, unscheduled attractions and total
 def display_itinerary(attractions, days, travelers):
