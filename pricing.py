@@ -91,6 +91,69 @@ REGIONAL_PRICING = {
 }
 
 #==============================================
+# ASEAN COUNTRY PRICES (MYR per person)
+#==============================================
+
+ASEAN_PRICING = {
+
+    "Brunei" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Cambodia" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Indonesia" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Laos" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Myanmar" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Philippines" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Singapore" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Thailand" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    },
+
+    "Vietnam" : {
+        "accommodation" : 1,
+        "public_transport" : 1,
+        "return_transport" : 1
+    }
+}
+
+ASEAN_COUNTRIES = list(ASEAN_PRICING)
+
+#==============================================
 # SEASONAL MULTIPLIERS CONSTANTS
 #==============================================
 
