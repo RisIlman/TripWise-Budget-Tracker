@@ -18,45 +18,45 @@ BASE_RETURN_TRANSPORT = 300        # per person for return trip
 REGIONAL_PRICING = {
 
     "North Europe" : {
-        "accommodation" : 15,
-        "public_transport" : 10,
-        "return_transport" : 11.67
+        "accommodation" : 1.525,
+        "public_transport" : 1.280,
+        "return_transport" : 11.27
     },
 
     "West Europe" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 1.725,
+            "public_transport" : 1.140,
+            "return_transport" : 10.96
         },
 
     "East Europe" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 0.950,
+            "public_transport" : 0.360,
+            "return_transport" : 11.02
         },
 
     "South Europe" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 1.400,
+            "public_transport" : 0.640,
+            "return_transport" : 11.12
         },
 
     "North Asia" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 5.0
+            "accommodation" : 0.700,
+            "public_transport" : 0.300,
+            "return_transport" : 4.90
         },
 
     "Central Asia" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 0.500,
+            "public_transport" : 0.080,
+            "return_transport" : 10.67
         },
 
     "Middle East" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 0.950,
+            "public_transport" : 0.380,
+            "return_transport" : 8.68
         },
 
     "ASEAN" : {
@@ -66,27 +66,27 @@ REGIONAL_PRICING = {
         },
 
     "North America" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 13.33
+            "accommodation" : 1.750,
+            "public_transport" : 0.560,
+            "return_transport" : 16.13
         },
 
     "South America" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
+            "accommodation" : 0.725,
+            "public_transport" : 0.280,
+            "return_transport" : 26.23
         },
 
     "North Africa" : {
-        "accommodation" : 1.0,
-        "public_transport" : 1.0,
-        "return_transport" : 1.0
+        "accommodation" : 0.850,
+        "public_transport" : 0.120,
+        "return_transport" : 12.19
     },
 
     "Oceania" : {
-        "accommodation" : 1.0,
-        "public_transport" : 1.0,
-        "return_transport" : 8.33
+        "accommodation" : 1.550,
+        "public_transport" : 0.720,
+        "return_transport" : 9.20
     }
 }
 
