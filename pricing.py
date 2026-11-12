@@ -59,12 +59,6 @@ REGIONAL_PRICING = {
             "return_transport" : 8.68
         },
 
-    "ASEAN" : {
-            "accommodation" : 1.0,
-            "public_transport" : 1.0,
-            "return_transport" : 1.0
-        },
-
     "North America" : {
             "accommodation" : 1.750,
             "public_transport" : 0.560,
@@ -183,6 +177,11 @@ EXPENSE_SUGGESTION = {
     "Oceania" :               {"meals" : 130,  "miscellaneous" : 60}
 }
 
+REGION_ORDER = [
+    "North Europe", "West Europe", "East Europe", "South Europe",
+    "North Asia", "Central Asia", "Middle East", "ASEAN",
+    "North America", "South America", "North Africa", "Oceania"
+]
 
 #==============================================
 # FUNCTIONS
@@ -190,7 +189,7 @@ EXPENSE_SUGGESTION = {
 
 # Region names for the menu
 def get_region_names():
-    return["ASEAN"] + list(REGIONAL_PRICING.keys())
+    REGION_ORDER
 
 # Function to calculate the final regional prices based on the base prices and multipliers
 def get_region_prices(region, country=None):
