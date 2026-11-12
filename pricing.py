@@ -199,16 +199,20 @@ def get_region_prices(region, country=None):
         "return_transport": BASE_RETURN_TRANSPORT * multipliers["return_transport"]
     }
 
+def price_cell(value, column_width):
+    return("RM" + format(value, ">10,.2f")).rjust(column_width)
+
 def print_price_header(first_column):
     print(f"{first_column:<15}{'Accommodation':>15}{'Public Transport':>18}{'Return Transport':>18}")
-    print(f"{'':<15}{'(per night)':>15}{'(per day)'}{'(per trip)':>18}")
+    print(f"{'':<15}{'(per night)':>15}{'(per day)':>18}{'(round trip)':>18}")
     print("-" * 66)
 
 def print_price_row(name, prices):
     print(f"{name:<15}"
-          f"{'RM' + format(prices['accommodation'], ',.2f'):>15}"
-          f"{'RM' + format(prices['public_transport'], ',.2f'):>15}"
-          f"{'RM' + format(prices['return_transport'], ',.2f'):>15}")
+          f"{price_cell(prices['accommodation'], 15)}"
+          f"{price_cell(prices['public_transport'], 18)}"
+          f"{price_cell(prices['return_transport'], 18)}"
+    )
 
 # Function to display the pricing information in a formatted table
 def display_pricing_information():
@@ -224,7 +228,7 @@ def display_pricing_information():
     print("\nASEAN countries")
     print_price_header("Country")
     for country in ASEAN_PRICING:
-        print_price_row(country, get_region_prices("ASEAN, country"))
+        print_price_row(country, get_region_prices("ASEAN", country))
  
     print("\nSeason multipliers (applied to return transport):")
     for season, multiplier in SEASON_MULTIPLIERS.items():
