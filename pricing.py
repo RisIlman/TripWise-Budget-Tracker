@@ -177,11 +177,6 @@ EXPENSE_SUGGESTION = {
     "Oceania" :               {"meals" : 130,  "miscellaneous" : 60}
 }
 
-REGION_ORDER = [
-    "North Europe", "West Europe", "East Europe", "South Europe",
-    "North Asia", "Central Asia", "Middle East", "ASEAN",
-    "North America", "South America", "North Africa", "Oceania"
-]
 
 #==============================================
 # FUNCTIONS
@@ -189,7 +184,7 @@ REGION_ORDER = [
 
 # Region names for the menu
 def get_region_names():
-    REGION_ORDER
+    return["ASEAN"] + list(REGIONAL_PRICING.keys())
 
 # Function to calculate the final regional prices based on the base prices and multipliers
 def get_region_prices(region, country=None):
