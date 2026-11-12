@@ -51,7 +51,7 @@ def choose_from_list(title, options):
 # Ask user for destination country and return the country name (exclude Malaysia)
 def get_destination_country(region) :
     if region == "ASEAN":
-        print("ASEAN destinations: " + ", ".join(pricing.ASEAN_COUNTRIES))
+        return choose_from_list("Select ASEAN Country : ", pricing.ASEAN_COUNTRIES)
  
     while True:
         country = input("Enter Destination Country : ").strip()
@@ -68,7 +68,7 @@ def get_trip_information():
     print("\n======== PLAN YOUR TRIP ========")
     print("Departure and return airport: KLIA (Kuala Lumpur International Airport)")
  
-    region = choose_from_list("Select Destination Region : ", list(pricing.REGIONAL_PRICING.keys()))
+    region = choose_from_list("Select Destination Region : ", pricing.get_region_names())
     country = get_destination_country(region)
  
     days = get_positive_int("Number of travel days : ", minimum=2)
