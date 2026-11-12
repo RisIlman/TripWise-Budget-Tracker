@@ -53,7 +53,7 @@ def customize_daily_budget(label, suggested) :
 
 # Calculate the accommodation, public transport, and return transport total for all travelers
 def calculate_regional_costs(trip_info):
-    prices = pricing.get_region_prices(trip_info["region"])
+    prices = pricing.get_region_prices(trip_info["region"], trip_info["country"])
     season_multiplier = pricing.SEASON_MULTIPLIERS[trip_info["season"]]
     travelers = trip_info["travelers"]
 
