@@ -91,57 +91,57 @@ REGIONAL_PRICING = {
 ASEAN_PRICING = {
 
     "Brunei" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.744,
+        "public_transport" : 0.636,
+        "return_transport" : 2.013
     },
 
     "Cambodia" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.248,
+        "public_transport" : 0.631,
+        "return_transport" : 2.953
     },
 
     "Indonesia" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.599,
+        "public_transport" : 1.485,
+        "return_transport" : 1.833
     },
 
     "Laos" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.166,
+        "public_transport" : 0.158,
+        "return_transport" : 2.967
     },
 
     "Myanmar" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
-    },
-
-    "Philippines" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.629,
+        "public_transport" : 0.195,
+        "return_transport" : 5.170
     },
 
     "Singapore" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+            "accommodation" : 2.066,
+            "public_transport" : 0.890,
+            "return_transport" : 1.500
+        },
+
+    "Philippines" : {
+        "accommodation" : 0.996,
+        "public_transport" : 1.051,
+        "return_transport" : 3.127
     },
 
     "Thailand" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.966,
+        "public_transport" : 0.507,
+        "return_transport" : 2.410
     },
 
     "Vietnam" : {
-        "accommodation" : 1,
-        "public_transport" : 1,
-        "return_transport" : 1
+        "accommodation" : 0.998,
+        "public_transport" : 1.214,
+        "return_transport" : 2.093
     }
 }
 
