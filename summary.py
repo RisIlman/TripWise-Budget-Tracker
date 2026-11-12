@@ -32,12 +32,19 @@ def calculate_final_budget(costs, attraction_total, travelers, available_budget)
     total = round(sum(breakdown.values()), 2)
     remaining = round(available_budget - total, 2)
 
+    breakdown_pp = {}
+    for key, value in breakdown.items():
+        breakdown_pp[key] = value / travelers
+
     return {
-        "breakdown"   : breakdown,
-        "total"       : total,
-        "per_person"  : total / travelers,
-        "remaining"   : remaining,
-        "status"      : get_budget_status(remaining)
+        "breakdown"    : breakdown,
+        "breakdown_pp" : breakdown_pp,
+        "total"        : total,
+        "per_person"   : total / travelers,
+        "budget_pp"    : available_budget / travelers,
+        "remaining"    : remaining,
+        "remaining_pp" : remaining / travelers,
+        "status"       : get_budget_status(remaining)
     }
 
 # Return budget status in text
@@ -48,30 +55,39 @@ def get_budget_status(remaining):
         return "EXCEEDING BUDGET"
     return "AT BUDGET LIMIT"
 
+def money(value, width=12):
+    return "RM" + format(value, f">{width},.2f")
+
+def print_money_row(label, total, per_person):
+    print(f"{label:<20}{money(total)}   {money(per_person)}")
+
 # Print complete budget itinerary
 def display_trip_summary(trip_info, final, attractions):
-    print("\n" + "=" * 55)
-    print("               TRIPWISE TRIP SUMMARY")
-    print("=" * 55)
+    line = "-" * 51
+ 
+    print("\n" + "=" * 51)
+    print("             TRIPWISE TRIP SUMMARY")
+    print("=" * 51)
     print(f"Destination : {trip_info['country']} ({trip_info['region']})")
     print(f"Duration    : {trip_info['days']} days / {trip_info['nights']} nights")
-    print(f"Travelers  : {trip_info['travelers']}")
+    print(f"Travelers   : {trip_info['travelers']}")
     print(f"Season      : {trip_info['season']}")
  
     print("\n--- ESTIMATED EXPENSES ---")
+    print(f"{'':<20}{'Total':>14}   {'Per person':>14}")
     for key, label in EXPENSE_LABELS.items():
-        print(f"{label:<22}RM {final['breakdown'][key]:>12,.2f}")
-    print("-" * 55)
-    print(f"{'TOTAL ESTIMATED':<22}RM {final['total']:>12,.2f}")
-    print(f"{'Cost per person':<22}RM {final['per_person']:>12,.2f}")
+        print_money_row(label, final["breakdown"][key], final["breakdown_pp"][key])
+    print(line)
+    print_money_row("TOTAL ESTIMATED", final["total"], final["per_person"])
  
     print("\n--- BUDGET ANALYSIS ---")
-    print(f"{'Available budget':<22}RM {trip_info['budget']:>12,.2f}")
+    print(f"{'':<20}{'Total':>14}   {'Per person':>14}")
+    print_money_row("Available budget", trip_info["budget"], final["budget_pp"])
  
     if final["remaining"] >= 0:
-        print(f"{'Remaining':<22}RM {final['remaining']:>12,.2f}")
+        print_money_row("Remaining", final["remaining"], final["remaining_pp"])
     else:
-        print(f"{'Over budget by':<22}RM {-final['remaining']:>12,.2f}")
+        print_money_row("Over budget by", -final["remaining"], -final["remaining_pp"])
     print(f"Status: {final['status']}")
  
     if final["status"] == "EXCEEDING BUDGET":
